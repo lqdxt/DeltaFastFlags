@@ -129,6 +129,16 @@
     font-size: 0.94rem;
   }
 
+  .arrow {
+    display: inline-block;
+    width: 0.72em;
+    height: 0.72em;
+    margin: 0 0.18em;
+    vertical-align: -0.05em;
+    color: var(--muted);
+    flex: none;
+  }
+
   .code {
     position: relative;
     background: var(--panel-2);
@@ -181,6 +191,15 @@
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24">
+    <path d="M4 12h15M13 6l6 6-6 6"
+          fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
 <div class="wrap">
 
   <header>
@@ -265,25 +284,25 @@
 
     <article class="flag" id="CSGLevelOfDetailSwitchingDistanceL12">
       <h3><a href="#CSGLevelOfDetailSwitchingDistanceL12">CSGLevelOfDetailSwitchingDistanceL12</a></h3>
-      <p>LOD switch distance for tier 1→2 detail. 0 = always high detail.</p>
+      <p>LOD switch distance for tier 1<svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>2 detail. 0 = always high detail.</p>
       <div class="code"><pre><code>setfflag("CSGLevelOfDetailSwitchingDistanceL12", "0")</code></pre><button class="copy" type="button">Copy</button></div>
     </article>
 
     <article class="flag" id="CSGLevelOfDetailSwitchingDistanceL23">
       <h3><a href="#CSGLevelOfDetailSwitchingDistanceL23">CSGLevelOfDetailSwitchingDistanceL23</a></h3>
-      <p>LOD switch distance for tier 2→3 detail. 0 = always high detail.</p>
+      <p>LOD switch distance for tier 2<svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>3 detail. 0 = always high detail.</p>
       <div class="code"><pre><code>setfflag("CSGLevelOfDetailSwitchingDistanceL23", "0")</code></pre><button class="copy" type="button">Copy</button></div>
     </article>
 
     <article class="flag" id="CSGLevelOfDetailSwitchingDistanceL34">
       <h3><a href="#CSGLevelOfDetailSwitchingDistanceL34">CSGLevelOfDetailSwitchingDistanceL34</a></h3>
-      <p>LOD switch distance for tier 3→4 detail. 0 = always high detail.</p>
+      <p>LOD switch distance for tier 3<svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>4 detail. 0 = always high detail.</p>
       <div class="code"><pre><code>setfflag("CSGLevelOfDetailSwitchingDistanceL34", "0")</code></pre><button class="copy" type="button">Copy</button></div>
     </article>
 
     <article class="flag" id="FastGPULightCulling3">
       <h3><a href="#FastGPULightCulling3">FastGPULightCulling3</a></h3>
-      <p>Faster GPU-side light culling. Generally an FPS win.</p>
+      <p>Faster GPU-side light culling.</p>
       <div class="code"><pre><code>setfflag("FastGPULightCulling3", "true")</code></pre><button class="copy" type="button">Copy</button></div>
     </article>
 
@@ -343,7 +362,7 @@
 
     <article class="flag" id="DebugGraphicsPreferVulkan">
       <h3><a href="#DebugGraphicsPreferVulkan">DebugGraphicsPreferVulkan</a></h3>
-      <p>Forces the Vulkan renderer on Android. Can be a big perf gain.</p>
+      <p>Forces the Vulkan renderer on Android.</p>
       <div class="code"><pre><code>setfflag("DebugGraphicsPreferVulkan", "true")</code></pre><button class="copy" type="button">Copy</button></div>
     </article>
 
@@ -373,7 +392,7 @@
 
     <article class="flag" id="DebugPerfMode">
       <h3><a href="#DebugPerfMode">DebugPerfMode</a></h3>
-      <p>Internal performance mode toggle. Exact effect undocumented.</p>
+      <p>Internal performance mode toggle.</p>
       <div class="code"><pre><code>setfflag("DebugPerfMode", "true")</code></pre><button class="copy" type="button">Copy</button></div>
     </article>
 
@@ -391,7 +410,7 @@
 
     <article class="flag" id="UserIdPlayerNameCacheSize">
       <h3><a href="#UserIdPlayerNameCacheSize">UserIdPlayerNameCacheSize</a></h3>
-      <p>Cache for user-id → username lookups, in bytes.</p>
+      <p>Cache for user-id<svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>username lookups, in bytes.</p>
       <div class="code"><pre><code>setfflag("UserIdPlayerNameCacheSize", "33554432")</code></pre><button class="copy" type="button">Copy</button></div>
     </article>
 
