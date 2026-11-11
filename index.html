@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delta FastFlags</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #111821;
+    --panel-2: #0a0e13;
+    --border: #1e2a37;
+    --text: #ffffff;
+    --muted: #8b98a6;
+    --fn: #FDFBAC;
+    --str: #ADF195;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  code, pre, .flag h3 {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+  }
+
+  header { margin-bottom: 32px; }
+
+  header h1 {
+    margin: 0 0 12px;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  header p {
+    margin: 0 0 8px;
+    color: var(--muted);
+  }
+
+  header .badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .search-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 12px 0;
+    margin-bottom: 8px;
+    background: linear-gradient(var(--bg) 70%, transparent);
+  }
+
+  #search {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font: inherit;
+    outline: none;
+  }
+
+  #search:focus {
+    border-color: #34434f;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+  }
+
+  .section-title {
+    margin: 48px 0 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .flag {
+    display: block;
+    margin: 0 0 32px;
+    scroll-margin-top: 80px;
+  }
+
+  .flag[hidden] { display: none; }
+
+  .flag h3 {
+    margin: 0 0 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    word-break: break-word;
+  }
+
+  .flag h3 a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .flag h3 a:hover { text-decoration: underline; }
+
+  .flag p {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 0.94rem;
+  }
+
+  .code {
+    position: relative;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .code pre {
+    margin: 0;
+    padding: 12px 84px 12px 14px;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #ffffff;
+  }
+
+  .code code { white-space: pre; }
+
+  .fn  { color: var(--fn); }
+  .str { color: var(--str); }
+
+  .copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    background: #16202b;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .copy:hover {
+    color: #fff;
+    border-color: #34434f;
+  }
+
+  section[hidden] { display: none; }
+
+  @media (max-width: 520px) {
+    .wrap { padding: 32px 14px 64px; }
+    header h1 { font-size: 1.5rem; }
+    .code pre { padding-right: 14px; padding-top: 40px; }
+    .copy { top: 6px; right: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Delta FastFlags</h1>
+    <p>Just fflags from delta listed here, no reliable source was found so.</p>
+    <span class="badge">Still working</span>
+  </header>
+
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Filter flags…" autocomplete="off" spellcheck="false">
+  </div>
+
+  <main id="list">
+
+    <h2 class="section-title">Flags</h2>
+
+    <article class="flag" id="DebugDisplayFPS">
+      <h3><a href="#DebugDisplayFPS">DebugDisplayFPS</a></h3>
+      <p>Shows an FPS counter overlay on screen.</p>
+      <div class="code"><pre><code>setfflag("DebugDisplayFPS", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="TaskSchedulerTargetFps">
+      <h3><a href="#TaskSchedulerTargetFps">TaskSchedulerTargetFps</a></h3>
+      <p>Caps the render framerate. 10 = 10 FPS cap.</p>
+      <div class="code"><pre><code>setfflag("TaskSchedulerTargetFps", "10")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugFRMQualityLevelOverride">
+      <h3><a href="#DebugFRMQualityLevelOverride">DebugFRMQualityLevelOverride</a></h3>
+      <p>Overrides the graphics quality slider. 1 = minimum quality, 21 = max.</p>
+      <div class="code"><pre><code>setfflag("DebugFRMQualityLevelOverride", "1")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="FRMMaxGrassDistance">
+      <h3><a href="#FRMMaxGrassDistance">FRMMaxGrassDistance</a></h3>
+      <p>Maximum render distance for grass. 0 = disable grass entirely.</p>
+      <div class="code"><pre><code>setfflag("FRMMaxGrassDistance", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="FRMMinGrassDistance">
+      <h3><a href="#FRMMinGrassDistance">FRMMinGrassDistance</a></h3>
+      <p>Minimum distance before grass starts rendering. 0 = starts exactly where you are.</p>
+      <div class="code"><pre><code>setfflag("FRMMinGrassDistance", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugForceMSAASamples">
+      <h3><a href="#DebugForceMSAASamples">DebugForceMSAASamples</a></h3>
+      <p>Forces MSAA anti-aliasing. 1, 2, or 4 samples. 4 = smoothest edges.</p>
+      <div class="code"><pre><code>setfflag("DebugForceMSAASamples", "4")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="RobloxGuiBlurIntensity">
+      <h3><a href="#RobloxGuiBlurIntensity">RobloxGuiBlurIntensity</a></h3>
+      <p>Blur strength on menus / loading screens. 0 = no blur.</p>
+      <div class="code"><pre><code>setfflag("RobloxGuiBlurIntensity", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugSkyGray">
+      <h3><a href="#DebugSkyGray">DebugSkyGray</a></h3>
+      <p>Replaces the skybox with flat gray.</p>
+      <div class="code"><pre><code>setfflag("DebugSkyGray", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugPauseVoxelizer">
+      <h3><a href="#DebugPauseVoxelizer">DebugPauseVoxelizer</a></h3>
+      <p>Stops terrain voxelization, can freeze terrain updates.</p>
+      <div class="code"><pre><code>setfflag("DebugPauseVoxelizer", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="GrassMovementReducedMotionFactor">
+      <h3><a href="#GrassMovementReducedMotionFactor">GrassMovementReducedMotionFactor</a></h3>
+      <p>Reduces grass sway animation. 1 = enabled.</p>
+      <div class="code"><pre><code>setfflag("GrassMovementReducedMotionFactor", "1")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="CSGLevelOfDetailSwitchingDistance">
+      <h3><a href="#CSGLevelOfDetailSwitchingDistance">CSGLevelOfDetailSwitchingDistance</a></h3>
+      <p>Distance at which CSG models drop to low LOD. 1 = aggressive.</p>
+      <div class="code"><pre><code>setfflag("CSGLevelOfDetailSwitchingDistance", "1")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="CSGLevelOfDetailSwitchingDistanceL12">
+      <h3><a href="#CSGLevelOfDetailSwitchingDistanceL12">CSGLevelOfDetailSwitchingDistanceL12</a></h3>
+      <p>LOD switch distance for tier 1→2 detail. 0 = always high detail.</p>
+      <div class="code"><pre><code>setfflag("CSGLevelOfDetailSwitchingDistanceL12", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="CSGLevelOfDetailSwitchingDistanceL23">
+      <h3><a href="#CSGLevelOfDetailSwitchingDistanceL23">CSGLevelOfDetailSwitchingDistanceL23</a></h3>
+      <p>LOD switch distance for tier 2→3 detail. 0 = always high detail.</p>
+      <div class="code"><pre><code>setfflag("CSGLevelOfDetailSwitchingDistanceL23", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="CSGLevelOfDetailSwitchingDistanceL34">
+      <h3><a href="#CSGLevelOfDetailSwitchingDistanceL34">CSGLevelOfDetailSwitchingDistanceL34</a></h3>
+      <p>LOD switch distance for tier 3→4 detail. 0 = always high detail.</p>
+      <div class="code"><pre><code>setfflag("CSGLevelOfDetailSwitchingDistanceL34", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="FastGPULightCulling3">
+      <h3><a href="#FastGPULightCulling3">FastGPULightCulling3</a></h3>
+      <p>Faster GPU-side light culling. Generally an FPS win.</p>
+      <div class="code"><pre><code>setfflag("FastGPULightCulling3", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="RenderGpuTextureCompressor">
+      <h3><a href="#RenderGpuTextureCompressor">RenderGpuTextureCompressor</a></h3>
+      <p>Enables GPU-side texture compression.</p>
+      <div class="code"><pre><code>setfflag("RenderGpuTextureCompressor", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugRenderingSetDeterministic">
+      <h3><a href="#DebugRenderingSetDeterministic">DebugRenderingSetDeterministic</a></h3>
+      <p>Forces deterministic render order, debugging aid.</p>
+      <div class="code"><pre><code>setfflag("DebugRenderingSetDeterministic", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="GraphicsGLEnableSuperHQShadersExclusion">
+      <h3><a href="#GraphicsGLEnableSuperHQShadersExclusion">GraphicsGLEnableSuperHQShadersExclusion</a></h3>
+      <p>Excludes super-high-quality shaders on OpenGL.</p>
+      <div class="code"><pre><code>setfflag("GraphicsGLEnableSuperHQShadersExclusion", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="GraphicsGLEnableHQShadersExclusion">
+      <h3><a href="#GraphicsGLEnableHQShadersExclusion">GraphicsGLEnableHQShadersExclusion</a></h3>
+      <p>Excludes high-quality shaders on OpenGL.</p>
+      <div class="code"><pre><code>setfflag("GraphicsGLEnableHQShadersExclusion", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="GraphicsCheckComputeSupport">
+      <h3><a href="#GraphicsCheckComputeSupport">GraphicsCheckComputeSupport</a></h3>
+      <p>Enables compute shader support check at startup.</p>
+      <div class="code"><pre><code>setfflag("GraphicsCheckComputeSupport", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="RenderShadowmapBias">
+      <h3><a href="#RenderShadowmapBias">RenderShadowmapBias</a></h3>
+      <p>Shadow map bias. 0 = default; raise to remove shadow acne.</p>
+      <div class="code"><pre><code>setfflag("RenderShadowmapBias", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugDontRenderUI">
+      <h3><a href="#DebugDontRenderUI">DebugDontRenderUI</a></h3>
+      <p>Stops rendering the entire UI. Huge FPS win, breaks interaction.</p>
+      <div class="code"><pre><code>setfflag("DebugDontRenderUI", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugDontRenderScreenGui">
+      <h3><a href="#DebugDontRenderScreenGui">DebugDontRenderScreenGui</a></h3>
+      <p>Stops rendering ScreenGui instances.</p>
+      <div class="code"><pre><code>setfflag("DebugDontRenderScreenGui", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugAdornsDisabled">
+      <h3><a href="#DebugAdornsDisabled">DebugAdornsDisabled</a></h3>
+      <p>Hides selection boxes and adorns.</p>
+      <div class="code"><pre><code>setfflag("DebugAdornsDisabled", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugGraphicsPreferVulkan">
+      <h3><a href="#DebugGraphicsPreferVulkan">DebugGraphicsPreferVulkan</a></h3>
+      <p>Forces the Vulkan renderer on Android. Can be a big perf gain.</p>
+      <div class="code"><pre><code>setfflag("DebugGraphicsPreferVulkan", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugGraphicsPreferOpenGL">
+      <h3><a href="#DebugGraphicsPreferOpenGL">DebugGraphicsPreferOpenGL</a></h3>
+      <p>Forces the OpenGL ES renderer on Android. Fallback if Vulkan crashes.</p>
+      <div class="code"><pre><code>setfflag("DebugGraphicsPreferOpenGL", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugGraphicsPreferD3D11">
+      <h3><a href="#DebugGraphicsPreferD3D11">DebugGraphicsPreferD3D11</a></h3>
+      <p>Forces Direct3D 11.</p>
+      <div class="code"><pre><code>setfflag("DebugGraphicsPreferD3D11", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="TaskSchedulerAutoThreadLimit">
+      <h3><a href="#TaskSchedulerAutoThreadLimit">TaskSchedulerAutoThreadLimit</a></h3>
+      <p>Caps the automatic worker thread count. Lower = less stutter sometimes.</p>
+      <div class="code"><pre><code>setfflag("TaskSchedulerAutoThreadLimit", "8")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugRunParallelLuaOnMainThread">
+      <h3><a href="#DebugRunParallelLuaOnMainThread">DebugRunParallelLuaOnMainThread</a></h3>
+      <p>Runs parallel Lua on the main thread instead of workers.</p>
+      <div class="code"><pre><code>setfflag("DebugRunParallelLuaOnMainThread", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugPerfMode">
+      <h3><a href="#DebugPerfMode">DebugPerfMode</a></h3>
+      <p>Internal performance mode toggle. Exact effect undocumented.</p>
+      <div class="code"><pre><code>setfflag("DebugPerfMode", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DefaultMeshCacheSizeMB">
+      <h3><a href="#DefaultMeshCacheSizeMB">DefaultMeshCacheSizeMB</a></h3>
+      <p>Base mesh cache size in megabytes.</p>
+      <div class="code"><pre><code>setfflag("DefaultMeshCacheSizeMB", "256")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="MeshContentProviderForceCacheSize">
+      <h3><a href="#MeshContentProviderForceCacheSize">MeshContentProviderForceCacheSize</a></h3>
+      <p>Forces mesh cache to a fixed byte size. 0 = no force.</p>
+      <div class="code"><pre><code>setfflag("MeshContentProviderForceCacheSize", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="UserIdPlayerNameCacheSize">
+      <h3><a href="#UserIdPlayerNameCacheSize">UserIdPlayerNameCacheSize</a></h3>
+      <p>Cache for user-id → username lookups, in bytes.</p>
+      <div class="code"><pre><code>setfflag("UserIdPlayerNameCacheSize", "33554432")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="EmotesAnimationsPerPlayerCacheSize">
+      <h3><a href="#EmotesAnimationsPerPlayerCacheSize">EmotesAnimationsPerPlayerCacheSize</a></h3>
+      <p>Per-player emote animation cache in bytes.</p>
+      <div class="code"><pre><code>setfflag("EmotesAnimationsPerPlayerCacheSize", "16777216")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="S2PhysicsSenderRate">
+      <h3><a href="#S2PhysicsSenderRate">S2PhysicsSenderRate</a></h3>
+      <p>Physics network send rate per second. 0 = stop sending (solo FPS gain, multiplayer desync).</p>
+      <div class="code"><pre><code>setfflag("S2PhysicsSenderRate", "0")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="ConnectionMTUSize">
+      <h3><a href="#ConnectionMTUSize">ConnectionMTUSize</a></h3>
+      <p>Network packet MTU in bytes. Changing can disconnect you.</p>
+      <div class="code"><pre><code>setfflag("ConnectionMTUSize", "900")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="MaximumUnstickForceInGs">
+      <h3><a href="#MaximumUnstickForceInGs">MaximumUnstickForceInGs</a></h3>
+      <p>Maximum unstick force. Negative = wallglide / fling behavior.</p>
+      <div class="code"><pre><code>setfflag("MaximumUnstickForceInGs", "-1000")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="MinClientSimulationRadius">
+      <h3><a href="#MinClientSimulationRadius">MinClientSimulationRadius</a></h3>
+      <p>Minimum network ownership radius. Huge = simulate everything locally.</p>
+      <div class="code"><pre><code>setfflag("MinClientSimulationRadius", "2147000000")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="MaxClientSimulationRadius">
+      <h3><a href="#MaxClientSimulationRadius">MaxClientSimulationRadius</a></h3>
+      <p>Maximum network ownership radius. Pair with MinClientSimulationRadius.</p>
+      <div class="code"><pre><code>setfflag("MaxClientSimulationRadius", "2147000000")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugUseCustomSimRadius">
+      <h3><a href="#DebugUseCustomSimRadius">DebugUseCustomSimRadius</a></h3>
+      <p>Required to be true for Min/MaxClientSimulationRadius to apply.</p>
+      <div class="code"><pre><code>setfflag("DebugUseCustomSimRadius", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="CameraMaxZoomDistance">
+      <h3><a href="#CameraMaxZoomDistance">CameraMaxZoomDistance</a></h3>
+      <p>Maximum camera zoom-out distance in studs.</p>
+      <div class="code"><pre><code>setfflag("CameraMaxZoomDistance", "99999")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="ScrollWheelDeltaAmount">
+      <h3><a href="#ScrollWheelDeltaAmount">ScrollWheelDeltaAmount</a></h3>
+      <p>Scroll wheel sensitivity multiplier.</p>
+      <div class="code"><pre><code>setfflag("ScrollWheelDeltaAmount", "1")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="FontSizePadding">
+      <h3><a href="#FontSizePadding">FontSizePadding</a></h3>
+      <p>Extra padding around UI text.</p>
+      <div class="code"><pre><code>setfflag("FontSizePadding", "3")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="EnableInGameMenuChrome">
+      <h3><a href="#EnableInGameMenuChrome">EnableInGameMenuChrome</a></h3>
+      <p>Enables the new in-game menu chrome.</p>
+      <div class="code"><pre><code>setfflag("EnableInGameMenuChrome", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="EnableInGameMenuModernization">
+      <h3><a href="#EnableInGameMenuModernization">EnableInGameMenuModernization</a></h3>
+      <p>Enables the modernized in-game menu layout.</p>
+      <div class="code"><pre><code>setfflag("EnableInGameMenuModernization", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="EnableCameraByDefault">
+      <h3><a href="#EnableCameraByDefault">EnableCameraByDefault</a></h3>
+      <p>Starts with camera enabled by default.</p>
+      <div class="code"><pre><code>setfflag("EnableCameraByDefault", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="EnableQuickGameLaunch">
+      <h3><a href="#EnableQuickGameLaunch">EnableQuickGameLaunch</a></h3>
+      <p>Enables the fast game launch path.</p>
+      <div class="code"><pre><code>setfflag("EnableQuickGameLaunch", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="VoiceBetaBadge">
+      <h3><a href="#VoiceBetaBadge">VoiceBetaBadge</a></h3>
+      <p>Shows or hides the voice chat beta badge.</p>
+      <div class="code"><pre><code>setfflag("VoiceBetaBadge", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="CanHideGuiGroupId">
+      <h3><a href="#CanHideGuiGroupId">CanHideGuiGroupId</a></h3>
+      <p>Group ID whose GUI elements can be hidden. Leave unless you know the ID.</p>
+      <div class="code"><pre><code>setfflag("CanHideGuiGroupId", "32380007")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="TrackMacWebLaunchFlow">
+      <h3><a href="#TrackMacWebLaunchFlow">TrackMacWebLaunchFlow</a></h3>
+      <p>Tracks mac web launch flow.</p>
+      <div class="code"><pre><code>setfflag("TrackMacWebLaunchFlow", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DisableDPIScale">
+      <h3><a href="#DisableDPIScale">DisableDPIScale</a></h3>
+      <p>Disables DPI scaling, UI will render at native pixel size.</p>
+      <div class="code"><pre><code>setfflag("DisableDPIScale", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="EnableBubbleChatFromChatService">
+      <h3><a href="#EnableBubbleChatFromChatService">EnableBubbleChatFromChatService</a></h3>
+      <p>Enables bubble chat driven by ChatService.</p>
+      <div class="code"><pre><code>setfflag("EnableBubbleChatFromChatService", "true")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="DebugForceChatDisabled">
+      <h3><a href="#DebugForceChatDisabled">DebugForceChatDisabled</a></h3>
+      <p>Forces chat to be disabled. Set false to leave chat alone.</p>
+      <div class="code"><pre><code>setfflag("DebugForceChatDisabled", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+    <article class="flag" id="no-visible-effect">
+      <h3><a href="#no-visible-effect">Other</a></h3>
+      <p>These flags are valid but do not change anything noticeable.</p>
+      <div class="code"><pre><code>setfflag("CrashUploadToBacktracePercentage", "0")
+setfflag("CrashReportingHundredthsPercentage", "0")
+setfflag("EphemeralCounterInfluxReportingEnabled", "false")
+setfflag("ClientLightingTechnologyChangedTelemetryHundredthsPercent", "0")
+setfflag("BootstrapperTelemetryReportingHundredthsPercentage", "0")
+setfflag("LinkBrowserTrackerToDeviceRollout", "0")
+setfflag("BrowserTrackerIdTelemetryEnabled", "false")
+setfflag("LocServicePerformanceAnalyticsEnabled", "false")
+setfflag("StartupTracingInfluxRollout", "0")
+setfflag("VideoCaptureServiceEnabled", "false")
+setfflag("PredictedOOM", "false")
+setfflag("PredictedOOMPercent", "0")
+setfflag("HttpCurlConnectionCacheSize", "0")
+setfflag("ReportDeviceInfoRollout", "0")
+setfflag("TerrainOTAMaxTextureSize", "1024")
+setfflag("AnimationClipMemCacheEnabled", "true")
+setfflag("HSRClusterSymmetryDistancePercent", "10000")
+setfflag("LmsClientRollout2", "0")
+setfflag("V1MenuLanguageSelectionFeaturePerMillageRollout", "0")
+setfflag("AvatarChatServiceUserPermissionsAudioEligible", "false")
+setfflag("FacialAnimationStreamingServiceUniverseSettingsEnableAudio", "false")
+setfflag("FacialAnimationStreamingServiceUserSettingsOptInAudio", "false")
+setfflag("FacialAnimationStreamingServiceUserSettingsOptInVideo", "false")
+setfflag("VoiceChatServiceManagerUseAvatarChat", "false")</code></pre><button class="copy" type="button">Copy</button></div>
+    </article>
+
+  </main>
+
+</div>
+
+<script>
+  document.querySelectorAll('.code code').forEach(function (codeEl) {
+    var raw = codeEl.textContent;
+    var html = raw
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    html = html.replace(/setfflag|"([^"]*)"/g, function (match, str) {
+      if (str !== undefined) {
+        return '<span class="str">"' + str + '"</span>';
+      }
+      return '<span class="fn">' + match + '</span>';
+    });
+
+    codeEl.innerHTML = html;
+  });
+
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', async function () {
+      var code = btn.parentElement.querySelector('code').textContent;
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = 'Copied';
+      } catch (err) {
+        btn.textContent = 'Failed';
+      }
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+    });
+  });
+
+  var search = document.getElementById('search');
+  search.addEventListener('input', function () {
+    var q = search.value.trim().toLowerCase();
+    document.querySelectorAll('.flag').forEach(function (el) {
+      el.hidden = q !== '' && el.textContent.toLowerCase().indexOf(q) === -1;
+    });
+    document.querySelectorAll('main > h2.section-title').forEach(function (title) {
+      var next = title.nextElementSibling;
+      var any = false;
+      while (next && !next.classList.contains('section-title')) {
+        if (next.classList.contains('flag') && !next.hidden) { any = true; break; }
+        next = next.nextElementSibling;
+      }
+      title.hidden = !any;
+    });
+  });
+</script>
+</body>
+</html>
